@@ -13,17 +13,17 @@ baseurl: ""
 lang: en
 
 # Change to your timezone › http://www.timezoneconverter.com/cgi-bin/findzone/findzone
-timezone:
+timezone: America/New_York
 
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: H0ax Hacks # the main title
+title: H0ax-Hacks (Campbell) # the main title
 
-tagline: A text-focused Jekyll theme # it will display as the sub-title
+tagline: A site for CTF Writeups and Cyber Security topics # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
-  A site for CTF writeups and cybersecurity topics
+  A site for CTF Writeups and Cyber Security topics
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
 url: "https://h0axhacks.com"
@@ -34,12 +34,12 @@ github:
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: Campbell
-  email: h0axsucks@gmail.com # change to your email address
+  name: h0axhacks
+  email: hoaxsucks@gmail.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
 
-    - https://github.com/username # change to your github homepage
+    - https://github.com/itsallah0ax # change to your github homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
     # - https://www.linkedin.com/in/username
@@ -77,9 +77,8 @@ theme_mode: # [light|dark]
 img_cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar:
+avatar: assets/images/ma.jpeg
 
-# boolean type, the global switch for TOC in posts.
 toc: true
 
 comments:
