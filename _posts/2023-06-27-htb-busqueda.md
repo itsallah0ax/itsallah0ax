@@ -142,7 +142,7 @@ From my previous CTF experiences looking at vulnerable Python code, I know that 
 ',__import__('os').system('code_to_execute_a_reverse_shell')) # super_hacker_man
 ```
 
-There is actually already a [python script](https://github.com/nikn0laty/Exploit-for-Searchor-2.4.0-Arbitrary-CMD-Injection) on github that will exploit this for us. How the payload for this was made was interesting too. It base64 encodes a reverse shell, saves it to a variable, echoes the variable into base64 -d to decode it, and the pipes the output of that into bash for it to be executed. Pretty cool right?
+There is actually already a [bashscript](https://github.com/nikn0laty/Exploit-for-Searchor-2.4.0-Arbitrary-CMD-Injection) on github that will exploit this for us. How the payload for this was made was interesting too. It base64 encodes a reverse shell, saves it to a variable, echoes the variable into base64 -d to decode it, and the pipes the output of that into bash for it to be executed. Pretty cool right?
 
 Running this script with the command:
 
