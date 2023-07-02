@@ -94,22 +94,7 @@ I did a bit more testing and each engine returns a unique format that it uses. T
 
 I took a quick look at the source code for the page and saw a reference for a tool called __Searchor__. Doing a quick search for vulnerabilities for __Searchor__ returned a [post](https://security.snyk.io/vuln/SNYK-PYTHON-SEARCHOR-3166303) by Snyk (I highly recommened using Snyk to look for vulnerable software/package versions) that said there was an Arbitrary Code Execution vulnerability for __Searchor__ versions 2.4.2 and lower. According to the html source, this site is running 2.4.0, so it is definitely vulnerable.
 
-While I was looking at this vulnerability, I also had feroxbuster running in the background to do some web-directory fuzzing. I was able to find the following:
-
-```bash
-
-```
-
-Visiting __http://searcher.htb/server-status__ returned a 403 but it disclosed some host information:
-
-```
-Forbidden
-You don't have permission to access this resource.
-
-Apache/2.4.52 (Ubuntu) Server at searcher.htb Port 80
-```
-
-I originally ran feroxbuster with the __raft-medium-directories__ wordlist but switched to the Apache.fuzz wordlist after learning that apache was the webserver that was in use. I did not find anything of interest aside from /search endpoint, I am assuming that 405 is because that is expecting a POST request instead of a GET. I am going to bet all of my money that this is the endpoint that I have to exploit. Output from the directory fuzz:
+While I was looking at this vulnerability, I also had feroxbuster running in the background to do some web-directory fuzzing. I originally ran feroxbuster with the __raft-medium-directories__ wordlist but switched to the Apache.fuzz wordlist after learning that apache was the webserver that was in use. I did not find anything of interest aside from /search endpoint, I am assuming that 405 is because that is expecting a POST request instead of a GET. I am going to bet all of my money that this is the endpoint that I have to exploit. Output from the directory fuzz:
 
 ```bash
 feroxbuster -k -u http://searcher.htb -w /usr/share/SecLists-master/Discovery/Web-Content/Apache.fuzz.txt -r
@@ -151,7 +136,13 @@ url = eval(
         )
 ```
 
-From my previous CTF experiences looking at vulnerable Python code, I know that using the __eval()__ function can be very risky and can often lead to injection vulnerabilities if not implemented correctly. Looking at this code snippet, it is actually pretty easy to inject code into the __query__ variable. There is also already a [python script](https://github.com/nikn0laty/Exploit-for-Searchor-2.4.0-Arbitrary-CMD-Injection) on github that will exploit this for us. (*Add info about how the injection vuln works*)
+From my previous CTF experiences looking at vulnerable Python code, I know that using the __eval()__ function can be very risky and can often lead to injection vulnerabilities if not implemented correctly. Looking at this code snippet, it is actually pretty easy to inject code into the __query__ variable. The jist of what needs to be done is that we need to format a curl command with the '-d' option to specify data that we want to send to the /search endpoint. We first will specify __'engine=Google'__ and then for query we will want to start it out with __',__ to escape from the query parameter and add another arg for the format string.  After that since this is python we will want to import the OS module so that we can inject a shell into the code, after we add in our code to start a reverse shell back to us we want to end the code with __))# comment__ to properly close out the code and comment out the rest of it. Basically the payload you want should look something like this:
+
+```python
+',__import__('os').system('code_to_execute_a_reverse_shell')) # super_hacker_man
+```
+
+There is actually already a [python script](https://github.com/nikn0laty/Exploit-for-Searchor-2.4.0-Arbitrary-CMD-Injection) on github that will exploit this for us. How the payload for this was made was interesting too. It base64 encodes a reverse shell, saves it to a variable, echoes the variable into base64 -d to decode it, and the pipes the output of that into bash for it to be executed. Pretty cool right?
 
 Running this script with the command:
 
