@@ -8,6 +8,8 @@ tags: []
 
 ## Machine Summary
 
+Busqueda is an easy-level box that has a webserver running a vulnerable version of the python Searchor application. This version is vulnerable to code injection which allows us to get a foothold on the box. Privlege escaltion to root is done by finding plain-text credentials for the main sudo-user on the box and then leveraging a relative-path vulnerability for the one script that user can run with sudo on the box.
+
 ## Reconnaissance
 
 To start of the box let's run rustscan and see what we find. Below are the results of the scan:
