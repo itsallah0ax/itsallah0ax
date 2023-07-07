@@ -3,7 +3,7 @@ layout: post
 title: Busqueda (HTB-Easy)
 date: 2023-6-27
 categories: [Hack The Box]
-tags: []
+tags: [searchor, git, code inection, python, relative path vulnerability, mysql]
 ---
 
 ## Machine Summary
