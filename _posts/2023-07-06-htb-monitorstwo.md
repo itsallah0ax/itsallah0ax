@@ -8,7 +8,7 @@ tags: [cacti,php,unauthenticated-rce,mysql,docker,SUID,capsh]
 
 ## Machine Summary
 
-(*ADD AT END*)
+This box is an easy-level one from Hack The Box. The box is running a vulnerable version of the Cacti application that allows for unauthenticated RCE to get an initial foothold. Once you get the foothold you quickly find out you are in a Docker container. There is a script on the container that has credentials for the mysql database that is present on the container, the database has hashed credentials for a user on the host machine that can be cracked. Once you get a ssh session on the host, you will notice that the docker engine version is out of date and has a SUID vulnerability that allows an attacker to spawn a root shell. 
 
 ## Reconnaissance
 
