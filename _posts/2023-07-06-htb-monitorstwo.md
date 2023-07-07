@@ -62,7 +62,8 @@ Let's go ahead and add monitorstwo.htb to our hosts file and visit the web page 
 
 This box is running a program called Cacti. Cacti is an open-source network monitoring and graphing tool used to gather and visualize data from various network devices. It provides a web-based interface that allows administrators to monitor the performance and health of their network infrastructure (*Sourced from Chat-GPT*).
 
-There is a version number for Cacti as well __Version 1.2.22 | (c) 2004-2023__. Searching for vulnerabilities for this returned __CVE-2022-46169-CACTI-1.2.22__, which details how an unauthenticated user can get RCE on machines running vulnerable versions. Before I dug into the specifics of this vulnerability I ran a couple directory and subdomain fuzzing attacks on the box but nothing of interest was found so I pivoted back to focusing on the RCE vulnerability.
+There is a version number for Cacti as well __Version 1.2.22 | (c) 2004-2023__. Searching for vulnerabilities for this returned __CVE-2022-46169-CACTI-1.2.22__, which details how an unauthenticated user can get RCE on machines running vulnerable versions.
+Before I dug into the specifics of this vulnerability I ran a couple directory and subdomain fuzzing attacks on the box but nothing of interest was found so I pivoted back to focusing on the RCE vulnerability.
 
 
 ## CVE-2022-46169/Unauthenticated RCE 
@@ -286,7 +287,8 @@ policy_graph_templates: 1
            reset_perms: 2135691668
 ```
 
-Let's first try to crack the hash for Marcus, usually the hash for the admin creds on Hack The Box machines is not in rockyou. The first part of the hash indicates that we are using the bcrypt hasing function (2y), the second part (10) indicates this algorithm was done with 10 iterations, the third part (vcr...) represents the salt used for the hash, and the fourth part (3WeK...) is the hash of the password. Now lets do __hashcat --help | grep bcrypt__ and find the appropriate algorithm for this hash. 
+Let's first try to crack the hash for Marcus, usually the hash for the admin creds on Hack The Box machines is not in rockyou. The first part of the hash indicates that we are using the bcrypt hasing function (2y), the second part (10) indicates this algorithm was done with 10 iterations, 
+the third part (vcr...) represents the salt used for the hash, and the fourth part (3WeK...) is the hash of the password. Now lets do __hashcat --help | grep bcrypt__ and find the appropriate algorithm for this hash. 
 
 This return the following:
 
