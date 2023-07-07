@@ -3,7 +3,7 @@ layout: post
 title: MonitorsTwo (HTB-Easy)
 date: 2023-7-6
 categories: [Hack The Box]
-tags: [cacti,php,unauthenticated-rce,mysql]
+tags: [cacti,php,unauthenticated-rce,mysql,docker,SUID,capsh]
 ---
 
 ## Machine Summary
