@@ -3,8 +3,10 @@ layout: post
 title: MonitorsTwo (HTB-Easy)
 date: 2023-7-6
 categories: [Hack The Box]
-tags: [cacti,php,unauthenticated-rce,mysql,docker,SUID,capsh]
+tags: [linux,cacti,php,unauthenticated-rce,mysql,docker,SUID,capsh]
 ---
+
+### Box Release Date: April 29, 2023
 
 ## Machine Summary
 

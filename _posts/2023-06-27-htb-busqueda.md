@@ -3,8 +3,10 @@ layout: post
 title: Busqueda (HTB-Easy)
 date: 2023-6-27
 categories: [Hack The Box]
-tags: [searchor, git, code inection, python, relative path vulnerability, mysql]
+tags: [linux,searchor, git, code inection, python, relative path vulnerability, mysql]
 ---
+
+### Box Release Date: April 8, 2023
 
 ## Machine Summary
 
