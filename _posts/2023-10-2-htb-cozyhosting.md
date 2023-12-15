@@ -282,6 +282,8 @@ Expires: 0
 X-Frame-Options: DENY
 ```
 
+## Shell as app
+
 We get two different errors, one for SSH and one for Key Verification. This does not strike me as odd and definitely the intended functionality expected from the target. The second error though raises one question, exactly how is it reading usernames that are POSTed to the machine? This error occurs when a SSH client cannot verify the authenticity of the remote server it is trying to connect to. This makes me believe that data is getting passed to and from a function in their application, that passes input into a shell command, without properly sanitizing the input (*Very Insecure*).
 
 I tried a few different common payloads to see if I could run the __id__ command. Doing a simple __'id__ returned promising results.
@@ -363,6 +365,8 @@ export TERM=xterm # allows you to clear STDOUT
 
 # You can set row and column specifics on the target to make it match the settings on your host terminal, I will skip this for now
 ```
+
+## Privlege Escalation to Josh
 
 Now that we have our shell setup, let's see what we need to do to be able to read the user flag.
 
@@ -542,6 +546,8 @@ drwx------ 2 josh josh 4.0K Oct  6 00:46 .ssh
 josh@cozyhosting:~$ cat user.txt 
 b57a0f7fe23....................
 ```
+
+## Privlege Escalation to Root
 
 Once on the box I loaded up both Pspy64 and linpeas, did not see anything of interest there. The next thing I did was run __sudo -l__, using the password I got for the user Josh. It luckily worked and I saw the following:
 
