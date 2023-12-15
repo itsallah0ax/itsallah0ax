@@ -3,12 +3,14 @@ layout: post
 title: Analytics (HTB-Easy)
 date: 2023-12-14
 categories: [Hack The Box]
-tags: [linux, ]
+tags: [linux, Metabase, Docker, RCE]
 ---
 
 ### Box Release Date: October 7, 2023
 
 ## Machine Summary
+
+This was an easy level box from HackTheBox that had you utilize a pre-auth RCE vulnerability for the Metabase application to get a shell on the box. You then had to escape the docker container you got the shell in by finding plain-text credentials. Once user access was established, to get root a Ubuntu kernel vulnerability needed to be leveraged.
 
 ## Reconnaissance
 
