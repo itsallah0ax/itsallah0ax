@@ -3,14 +3,14 @@ layout: post
 title: Codify (HTB-Easy)
 date: 2023-12-18
 categories: [Hack The Box]
-tags: [Linux, Node.js, ]
+tags: [Linux, Node.js, bash, john, bruteforce, vm2, mysql]
 ---
 
 ### Box Release Date: November 4, 2023 
 
 ## Machine Summary
 
-
+This is an easy-level box from Hack The Box. Getting a foothold on the box requires you to leverage a vulnerability in the vm2 Node.js module, that allows you to perform a sandbox-escape attack. Getting user access is done through cracking a hash found in the /var/www directory. Finally, getting root is done by bruteforcing credentials from a vulnerable bash script.
 
 ## Reconnaissance
 
@@ -308,8 +308,6 @@ done
 /usr/bin/chmod 774 -R "$BACKUP_DIR"
 /usr/bin/echo 'Done!'
 ```
-
-##### Rephrase the words below, do not completely plagarize :)
 
 The if statement section of the script contains vulnerable logic, with how it is written an attacker could place an asterisk as input and it will evaluate to true, since the use of __==__ inside __[[ ]]__ in Bash will make the asterisk be treated as a glob character. This means we can crack the mysql script credentials by bruteforcing every character in the password.
 
